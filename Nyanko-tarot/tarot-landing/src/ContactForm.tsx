@@ -61,6 +61,8 @@ export function ContactForm({ className = "" }: ContactFormProps) {
             if (response.ok) {
                 setStatus("success");
             } else {
+                const errorText = await response.text();
+                console.error("Tarot contact API error:", response.status, errorText);
                 setStatus("error");
             }
         } catch (error) {

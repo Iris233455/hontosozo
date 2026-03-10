@@ -7,7 +7,45 @@ import { ContactEmail } from "@/emails/ContactEmail";
 // 只有在使用真实的 RESEND_API_KEY 时才会实例化，防止构建时缺少 key 报错
 const resendUrl = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
+const DEFAULT_ALLOWED_ORIGINS = new Set([
+    "https://hontosozo.com",
+    "https://www.hontosozo.com",
+    "https://tarot.hontosozo.com",
+    "http://localhost:3000",
+    "http://localhost:5173",
+]);
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+    if (!origin || !DEFAULT_ALLOWED_ORIGINS.has(origin)) {
+        return {};
+    }
+
+    return {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Max-Age": "86400",
+        Vary: "Origin",
+    };
+}
+
+function jsonResponse(body: unknown, status: number, origin: string | null) {
+    return NextResponse.json(body, {
+        status,
+        headers: getCorsHeaders(origin),
+    });
+}
+
+export async function OPTIONS(request: Request) {
+    return new NextResponse(null, {
+        status: 204,
+        headers: getCorsHeaders(request.headers.get("origin")),
+    });
+}
+
 export async function POST(request: Request) {
+    const origin = request.headers.get("origin");
+
     try {
         const data = await request.json();
         const { hcaptchaToken, ...formData } = data;
@@ -15,7 +53,7 @@ export async function POST(request: Request) {
         // 如果配置了 hCaptcha，验证令牌
         if (process.env.HCAPTCHA_SECRET_KEY) {
             if (!hcaptchaToken) {
-                return NextResponse.json({ success: false, error: "Missing captcha token" }, { status: 400 });
+                return jsonResponse({ success: false, error: "Missing captcha token" }, 400, origin);
             }
 
             const verifyParams = new URLSearchParams();
@@ -32,7 +70,7 @@ export async function POST(request: Request) {
 
             if (!captchaResult.success) {
                 console.error("hCaptcha verification failed:", captchaResult);
-                return NextResponse.json({ success: false, error: "Captcha verification failed" }, { status: 400 });
+                return jsonResponse({ success: false, error: "Captcha verification failed" }, 400, origin);
             }
         }
 
@@ -41,7 +79,7 @@ export async function POST(request: Request) {
             console.warn("RESEND_API_KEY is not defined. Simulating email send for 1 second.");
             await new Promise((resolve) => setTimeout(resolve, 1000));
             console.log("Mock contact form submission data:", formData);
-            return NextResponse.json({ success: true, message: "Thank you for your message." }, { status: 200 });
+            return jsonResponse({ success: true, message: "Thank you for your message." }, 200, origin);
         }
 
         // 从环境变量读取收件人邮箱，如果没有配置则退回到默认邮箱
@@ -69,20 +107,22 @@ export async function POST(request: Request) {
 
         if (error) {
             console.error("Resend API error:", error);
-            return NextResponse.json(
+            return jsonResponse(
                 { success: false, error: "Email delivery failed" },
-                { status: 500 }
+                500,
+                origin
             );
         }
 
         console.log("Contact form successfully sent via Resend:", emailData?.id);
 
-        return NextResponse.json({ success: true, message: "Thank you for your message." }, { status: 200 });
+        return jsonResponse({ success: true, message: "Thank you for your message." }, 200, origin);
     } catch (error) {
         console.error("Catch error in contact route:", error);
-        return NextResponse.json(
+        return jsonResponse(
             { success: false, error: "Failed to process contact form" },
-            { status: 500 }
+            500,
+            origin
         );
     }
 }
