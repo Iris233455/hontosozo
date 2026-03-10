@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { render } from "@react-email/render";
 import { Resend } from "resend";
 import { ContactEmail } from "@/emails/ContactEmail";
 
@@ -49,17 +50,21 @@ export async function POST(request: Request) {
         // 从环境变量读取发件人邮箱，例如 "onboarding@resend.dev" 或者您验证过的自己域名邮箱
         const fromEmail = process.env.RESEND_FROM_EMAIL || "HONTO SOZO Contact <onboarding@resend.dev>";
 
+        const emailHtml = await render(
+            ContactEmail({
+                name: formData.name,
+                email: formData.email,
+                topic: formData.topic,
+                message: formData.message,
+            })
+        );
+
         const { data: emailData, error } = await resendUrl.emails.send({
             from: fromEmail,
             to: [adminEmail],
             replyTo: formData.email, // 允许管理员直接回信给填写者
             subject: `[HONTO SOZO Website] New Inquiry - ${formData.topic}`,
-            react: ContactEmail({
-                name: formData.name,
-                email: formData.email,
-                topic: formData.topic,
-                message: formData.message
-            }),
+            html: emailHtml,
         });
 
         if (error) {
