@@ -360,53 +360,41 @@ const App: FC = () => {
 
         {/* 機能別ガイド */}
         <section id="guide" className="py-24 bg-brand-cream/40 border-y border-gray-100">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-sm font-bold text-brand-lavender-dark tracking-widest uppercase mb-3">Guide</h2>
-              <h3 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">アプリの詳しい使い方</h3>
-              <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                まずはかんたんな流れを確認し、必要に応じて各機能の使い方を詳しくご覧ください。
-              </p>
+              <h3 className="text-3xl md:text-4xl font-bold text-brand-navy">ご利用ガイド</h3>
             </div>
 
-            <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-brand-lavender/20 p-6 md:p-7 mb-8">
-              <p className="text-sm md:text-base text-brand-navy font-medium leading-relaxed">
-                本アプリはエンターテインメントおよび自己探求を目的としたツールです。
+            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100">
+              <p className="text-gray-600 leading-relaxed mb-2">
+                本アプリは、AIを活用したタロットリーディング支援ツールです。オリジナルスプレッドの作成や、自由なカード配置機能を備えています。
               </p>
-            </div>
+              <p className="text-sm text-gray-500 mb-8">
+                ※ 本アプリはエンターテインメントおよび自己探求を目的としたツールです。
+              </p>
 
-            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100 mb-8">
-              <h4 className="text-2xl font-bold text-brand-navy mb-4">アプリ概要</h4>
-              <div className="space-y-3 text-gray-600 leading-relaxed">
-                <p>本アプリは、AIを活用したタロットリーディング支援ツールです。</p>
-                <p>オリジナルスプレッドの作成や、自由なカード配置機能を備えています。</p>
+              <div className="divide-y divide-gray-100">
+                {appUsageGuides.map((guide) => (
+                  <div key={guide.title} className="py-6 first:pt-0 last:pb-0">
+                    <h4 className="text-lg font-bold text-brand-navy mb-3 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-lavender-dark flex-shrink-0" />
+                      {guide.title}
+                    </h4>
+                    <ol className="space-y-2 pl-4">
+                      {guide.steps.map((step, idx) => (
+                        <li key={step} className="flex items-start gap-3 text-gray-600 leading-relaxed">
+                          <span className="flex-shrink-0 text-sm font-bold text-brand-lavender-dark tabular-nums mt-px">{idx + 1}.</span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                    {guide.note ? (
+                      <p className="mt-3 pl-4 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
+                    ) : null}
+                  </div>
+                ))}
               </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {appUsageGuides.map((guide) => (
-                <div
-                  key={guide.title}
-                  className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
-                >
-                  <h4 className="text-xl font-bold text-brand-navy mb-5">{guide.title}</h4>
-                  <ol className="space-y-4">
-                    {guide.steps.map((step, idx) => (
-                      <li key={step} className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-lavender/25 text-brand-lavender-dark text-sm font-bold flex items-center justify-center">
-                          {idx + 1}
-                        </span>
-                        <span className="text-gray-600 leading-relaxed pt-0.5">{step}</span>
-                      </li>
-                    ))}
-                  </ol>
-                  {guide.note ? (
-                    <p className="mt-5 text-sm text-brand-navy bg-brand-cream/70 rounded-2xl px-4 py-3 border border-brand-lavender/20 leading-relaxed">
-                      ※ {guide.note}
-                    </p>
-                  ) : null}
-                </div>
-              ))}
             </div>
           </div>
         </section>
