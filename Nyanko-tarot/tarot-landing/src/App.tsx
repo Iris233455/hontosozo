@@ -8,7 +8,13 @@ import {
   tarotAppLogo,
 } from "./assets";
 
-const appUsageGuides = [
+type AppUsageGuide = {
+  title: string;
+  steps: string[];
+  note?: string;
+};
+
+const appUsageGuides: AppUsageGuide[] = [
   {
     title: "今日の運勢",
     steps: [
@@ -40,7 +46,7 @@ const appUsageGuides = [
     title: "ログイン",
     steps: ["LINEアカウントで自動的にログインされます。"],
   },
-] as const;
+];
 
 const App: FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
