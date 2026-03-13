@@ -335,49 +335,28 @@ const App: FC = () => {
               ※ 本アプリはエンターテインメントおよび自己探求を目的としたツールです。
             </p>
 
-            {/* かんたん 3 ステップ */}
-            <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">かんたん 3 ステップ</h4>
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch mb-14 relative">
-              <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-px bg-gray-200/60 -z-10" />
-              {[
-                { step: "01", title: "LINEからアクセス", desc: "お友達追加後、メニューからアプリを開きます。" },
-                { step: "02", title: "テーマを入力", desc: "気持ちや悩み、占いたいテーマを入力します。" },
-                { step: "03", title: "カードを引いて解釈", desc: "カードを引き、AIのやさしい解釈を受け取ります。" },
-              ].map((item, idx) => (
-                <div key={idx} className="flex-1 text-center">
-                  <div className="w-14 h-14 mx-auto bg-brand-lavender-dark text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md border-4 border-white">
-                    {item.step}
+            <div className="space-y-10">
+              {appUsageGuides.map((guide, guideIdx) => (
+                <div key={guide.title} className="flex gap-5">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-full bg-brand-lavender-dark text-white text-sm font-bold flex items-center justify-center mt-0.5">
+                    {guideIdx + 1}
                   </div>
-                  <h5 className="text-base font-bold mb-1">{item.title}</h5>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="border-t border-gray-200/60 pt-10">
-              <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">機能別の使い方</h4>
-
-              <div className="divide-y divide-gray-100">
-                {appUsageGuides.map((guide) => (
-                  <div key={guide.title} className="py-6 first:pt-0 last:pb-0">
-                    <h4 className="text-base font-bold text-brand-navy mb-3 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-lavender-dark flex-shrink-0" />
-                      {guide.title}
-                    </h4>
-                    <ol className="space-y-2 pl-4">
-                      {guide.steps.map((step, idx) => (
-                        <li key={step} className="flex items-start gap-3 text-gray-600 leading-relaxed">
-                          <span className="flex-shrink-0 text-sm font-bold text-brand-lavender-dark tabular-nums mt-px">{idx + 1}.</span>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-base font-bold text-brand-navy mb-2">{guide.title}</h4>
+                    <ul className="space-y-1.5">
+                      {guide.steps.map((step) => (
+                        <li key={step} className="text-gray-600 leading-relaxed flex items-start gap-2">
+                          <span className="text-brand-lavender-dark mt-2 flex-shrink-0 w-1 h-1 rounded-full bg-current" />
                           <span>{step}</span>
                         </li>
                       ))}
-                    </ol>
+                    </ul>
                     {guide.note ? (
-                      <p className="mt-3 pl-4 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
+                      <p className="mt-2 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
                     ) : null}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
             <div className="text-center mt-12">
