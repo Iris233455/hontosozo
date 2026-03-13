@@ -320,46 +320,8 @@ const App: FC = () => {
           </div>
         </section>
 
-        {/* 利用の流れ */}
-        <section className="py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 className="text-3xl font-bold text-center text-brand-navy mb-16">使い方はかんたん</h3>
-
-            <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch relative">
-              <div className="hidden md:block absolute top-[20%] left-0 right-0 h-0.5 bg-gray-100 -z-10"></div>
-
-              {[
-                { step: "01", title: "LINEからアクセス", desc: "お友達追加後、メニューからトーク画面でアプリを開きます。" },
-                { step: "02", title: "気になるテーマを入力", desc: "今の気持ちや悩んでいること、占いたいテーマを入力します。" },
-                { step: "03", title: "カードを引いて解釈", desc: "画面上でカードを引き、AIによるやさしい解釈を受け取ります。" }
-              ].map((item, idx) => (
-                <div key={idx} className="flex-1 text-center bg-white">
-                  <div className="w-16 h-16 mx-auto bg-brand-lavender-dark text-white rounded-full flex items-center justify-center font-bold text-xl mb-6 shadow-md border-4 border-white">
-                    {item.step}
-                  </div>
-                  <h4 className="text-xl font-bold mb-3">{item.title}</h4>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-16">
-              <a
-                href={lineUrl || "#contact"}
-                onClick={handleLineClick}
-                className="inline-flex bg-[#06C755] hover:bg-[#05B34C] text-white px-10 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-md items-center justify-center gap-2"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                  <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.931 8.91 9.292 9.589.654.148 1.543.456 1.77.986.204.475.066 1.22.03 1.684l-.158 1.054c-.046.286-.216 1.057.928.57 1.144-.486 6.173-3.636 8.529-6.3 1.09-1.233 1.609-2.6 1.609-4.045" />
-                </svg>
-                LINEでにゃんこタロットを開く
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* 機能別ガイド */}
-        <section id="guide" className="py-24 bg-brand-cream/40 border-y border-gray-100">
+        {/* ご利用ガイド */}
+        <section id="guide" className="py-24 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-sm font-bold text-brand-lavender-dark tracking-widest uppercase mb-3">Guide</h2>
@@ -370,31 +332,67 @@ const App: FC = () => {
               <p className="text-gray-600 leading-relaxed mb-2">
                 本アプリは、AIを活用したタロットリーディング支援ツールです。オリジナルスプレッドの作成や、自由なカード配置機能を備えています。
               </p>
-              <p className="text-sm text-gray-500 mb-8">
+              <p className="text-sm text-gray-500 mb-10">
                 ※ 本アプリはエンターテインメントおよび自己探求を目的としたツールです。
               </p>
 
-              <div className="divide-y divide-gray-100">
-                {appUsageGuides.map((guide) => (
-                  <div key={guide.title} className="py-6 first:pt-0 last:pb-0">
-                    <h4 className="text-lg font-bold text-brand-navy mb-3 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-lavender-dark flex-shrink-0" />
-                      {guide.title}
-                    </h4>
-                    <ol className="space-y-2 pl-4">
-                      {guide.steps.map((step, idx) => (
-                        <li key={step} className="flex items-start gap-3 text-gray-600 leading-relaxed">
-                          <span className="flex-shrink-0 text-sm font-bold text-brand-lavender-dark tabular-nums mt-px">{idx + 1}.</span>
-                          <span>{step}</span>
-                        </li>
-                      ))}
-                    </ol>
-                    {guide.note ? (
-                      <p className="mt-3 pl-4 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
-                    ) : null}
+              {/* かんたん 3 ステップ */}
+              <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">かんたん 3 ステップ</h4>
+              <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch mb-10 relative">
+                <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-px bg-gray-100 -z-10" />
+                {[
+                  { step: "01", title: "LINEからアクセス", desc: "お友達追加後、メニューからアプリを開きます。" },
+                  { step: "02", title: "テーマを入力", desc: "気持ちや悩み、占いたいテーマを入力します。" },
+                  { step: "03", title: "カードを引いて解釈", desc: "カードを引き、AIのやさしい解釈を受け取ります。" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex-1 text-center">
+                    <div className="w-14 h-14 mx-auto bg-brand-lavender-dark text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md border-4 border-white">
+                      {item.step}
+                    </div>
+                    <h5 className="text-base font-bold mb-1">{item.title}</h5>
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
+
+              <div className="border-t border-gray-100 pt-8">
+                <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">機能別の使い方</h4>
+
+                <div className="divide-y divide-gray-100">
+                  {appUsageGuides.map((guide) => (
+                    <div key={guide.title} className="py-6 first:pt-0 last:pb-0">
+                      <h4 className="text-base font-bold text-brand-navy mb-3 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-lavender-dark flex-shrink-0" />
+                        {guide.title}
+                      </h4>
+                      <ol className="space-y-2 pl-4">
+                        {guide.steps.map((step, idx) => (
+                          <li key={step} className="flex items-start gap-3 text-gray-600 leading-relaxed">
+                            <span className="flex-shrink-0 text-sm font-bold text-brand-lavender-dark tabular-nums mt-px">{idx + 1}.</span>
+                            <span>{step}</span>
+                          </li>
+                        ))}
+                      </ol>
+                      {guide.note ? (
+                        <p className="mt-3 pl-4 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href={lineUrl || "#contact"}
+                onClick={handleLineClick}
+                className="inline-flex bg-[#06C755] hover:bg-[#05B34C] text-white px-10 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-md items-center justify-center gap-2"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                  <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.931 8.91 9.292 9.589.654.148 1.543.456 1.77.986.204.475.066 1.22.03 1.684l-.158 1.054c-.046.286-.216 1.057.928.57 1.144-.486 6.173-3.636 8.529-6.3 1.09-1.233 1.609-2.6 1.609-4.045" />
+                </svg>
+                LINEでにゃんこタロットを開く
+              </a>
             </div>
           </div>
         </section>
