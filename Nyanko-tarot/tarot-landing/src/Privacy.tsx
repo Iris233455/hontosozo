@@ -27,106 +27,107 @@ const Privacy: FC = () => {
 
                 <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 text-gray-700 leading-relaxed font-medium">
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">1. 基本方針</h2>
                         <p>
-                            合同会社本当創造（以下「当社」といいます）は、当社が提供するサービス「Nyanko Tarot（にゃんこタロット）」（以下「本サービス」といいます）において、利用者の個人情報およびプライバシーの保護を重要な責務と認識し、以下の方針に基づき適切に取り扱います。
+                            合同会社本当創造（以下「当社」といいます。）は、当社が提供するサービス「Nyanko Tarot（にゃんこタロット）」（以下「本サービス」といいます。）におけるユーザーの個人情報およびプライバシーの保護を重要な責務と認識し、本ポリシーに基づき、これらの情報を適切に取り扱います。
                         </p>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">2. 取得する情報</h2>
-                        <p className="mb-4">当社は、本サービスの提供にあたり、以下の情報を取得する場合があります。</p>
-
-                        <div className="space-y-4">
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">1. 取得する情報</h2>
+                        <div className="space-y-6">
                             <div>
-                                <h3 className="font-bold text-brand-navy mb-2">(1) 利用者が入力する情報</h3>
+                                <h3 className="font-bold text-brand-navy mb-2">（1）ユーザーが入力する情報</h3>
                                 <ul className="list-disc pl-6 space-y-1">
-                                    <li>リーディングのために入力された質問やメッセージ</li>
-                                    <li>フィードバックやお問い合わせ内容</li>
+                                    <li>占いの利用時に入力された質問内容</li>
+                                    <li>生年月日、性別その他のプロフィール情報（任意入力）</li>
+                                    <li>お問い合わせ時に入力されたメールアドレス</li>
                                 </ul>
                             </div>
 
                             <div>
-                                <h3 className="font-bold text-brand-navy mb-2">(2) サービス利用情報</h3>
+                                <h3 className="font-bold text-brand-navy mb-2">（2）自動的に取得する情報</h3>
                                 <ul className="list-disc pl-6 space-y-1">
-                                    <li>利用日時</li>
-                                    <li>利用機能</li>
-                                    <li>アクセスログ</li>
-                                    <li>端末情報</li>
+                                    <li>端末・ブラウザに関する情報（OS、端末種別、ブラウザ種別、アプリ/サイトのバージョン等）</li>
+                                    <li>識別子（Cookie、ローカルストレージ等）</li>
+                                    <li>利用履歴（占いの利用回数、機能の利用状況等）</li>
+                                    <li>IPアドレス、アクセス日時</li>
                                 </ul>
-                            </div>
-
-                            <div>
-                                <h3 className="font-bold text-brand-navy mb-2">(3) LINEプラットフォームから取得される情報</h3>
-                                <p className="mb-2">LINEアプリを通じて本サービスを利用する場合、以下の情報を取得することがあります。</p>
-                                <ul className="list-disc pl-6 space-y-1 mb-2">
-                                    <li>LINEユーザー識別子</li>
-                                    <li>表示名</li>
-                                    <li>その他LINEプラットフォームが提供する情報</li>
-                                </ul>
-                                <p className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-100">※取得される情報はLINEのプライバシー設定および利用規約に基づきます。</p>
                             </div>
                         </div>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">3. 利用目的</h2>
-                        <p className="mb-2">取得した情報は、以下の目的で利用します。</p>
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">2. 利用目的</h2>
+                        <p className="mb-2">当社は、取得した情報を以下の目的で利用します。</p>
                         <ul className="list-disc pl-6 space-y-1">
-                            <li>本サービスの提供および機能改善</li>
-                            <li>AIリーディング機能の提供</li>
-                            <li>利用状況の分析</li>
+                            <li>占い結果およびAIによる解釈の提供</li>
+                            <li>本サービスの改善および品質向上</li>
                             <li>不正利用の防止</li>
-                            <li>お問い合わせ対応</li>
-                            <li>サービス品質向上</li>
+                            <li>お問い合わせへの対応</li>
                         </ul>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">4. AIサービスの利用</h2>
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">3. AI処理について（重要）</h2>
                         <p>
-                            本サービスでは、AIによるリーディング生成のため、利用者が入力した内容の一部を外部AIサービスに送信する場合があります。<br />
-                            当該データはリーディング結果生成の目的にのみ使用されます。
+                            本サービスでは、AIによる解釈を生成するため、ユーザーが入力した内容を匿名化したうえで、外部のAIサービスに送信することがあります。
+                        </p>
+                        <p>
+                            なお、送信される情報には、氏名、メールアドレスその他ユーザーを直接特定し得る情報は含まれません。
                         </p>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">5. 第三者提供</h2>
-                        <p className="mb-2">当社は、以下の場合を除き、利用者の個人情報を第三者に提供することはありません。</p>
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">4. 第三者提供および国外移転</h2>
+                        <p className="mb-2">当社は、次の場合を除き、個人情報を第三者に提供しません。</p>
                         <ul className="list-disc pl-6 space-y-1">
-                            <li>利用者の同意がある場合</li>
                             <li>法令に基づく場合</li>
-                            <li>サービス提供に必要な範囲で業務委託する場合</li>
+                            <li>ユーザーの同意がある場合</li>
+                            <li>分析目的で、個人を特定できない形式に加工したうえで外部サービスを利用する場合</li>
                         </ul>
-                    </section>
-
-                    <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">6. Cookieおよびアクセス解析</h2>
-                        <p>
-                            本サービスでは、サービス改善のためアクセス解析ツールを利用する場合があります。<br />
-                            これにより匿名の利用データが収集される場合があります。
+                        <p className="mt-4">
+                            また、当社は、Google Analytics、Firebase など、海外のサーバー上で提供されるサービスを利用することがあります。
                         </p>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">7. データの管理</h2>
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">5. 情報の管理</h2>
                         <p>
-                            当社は、取得した情報の漏えい、紛失、不正アクセス等を防止するため、適切な安全管理措置を講じます。
+                            当社は、不正アクセス、漏えい等を防止するため、必要かつ適切な安全管理措置を講じます。
                         </p>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">8. 利用者の権利</h2>
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">6. 保存期間</h2>
                         <p>
-                            利用者は、当社が保有する個人情報について、開示、訂正、削除等を求めることができます。
+                            当社は、個人情報を利用目的の達成に必要な期間に限って保持し、その後、適切な方法で削除または廃棄します。
                         </p>
                     </section>
 
                     <section className="mb-10 text-sm md:text-base">
-                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">9. プライバシーポリシーの変更</h2>
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">7. ユーザーの権利</h2>
+                        <p className="mb-2">ユーザーは、当社に対し、以下の請求を行うことができます。</p>
+                        <ul className="list-disc pl-6 space-y-1 mb-4">
+                            <li>個人情報の開示</li>
+                            <li>訂正または削除</li>
+                            <li>利用停止</li>
+                        </ul>
                         <p>
-                            当社は、必要に応じて本ポリシーを変更することがあります。<br />
-                            重要な変更がある場合は、Webサイト等で通知します。
+                            アカウントの削除は、本サービス内の「アカウント削除」から行えます。操作ができない場合は、「お問い合わせ」よりご連絡ください。
+                        </p>
+                    </section>
+
+                    <section className="mb-10 text-sm md:text-base">
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">8. 未成年者</h2>
+                        <p>
+                            未成年のユーザーは、保護者の同意を得たうえで本サービスをご利用ください。
+                        </p>
+                    </section>
+
+                    <section className="mb-10 text-sm md:text-base">
+                        <h2 className="text-xl font-bold text-brand-navy mb-4 border-b border-gray-100 pb-2">9. ポリシーの変更</h2>
+                        <p>
+                            当社は、法令の改正その他必要に応じて、本ポリシーを変更することがあります。
                         </p>
                     </section>
 

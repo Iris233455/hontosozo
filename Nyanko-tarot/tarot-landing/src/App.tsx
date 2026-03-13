@@ -8,6 +8,40 @@ import {
   tarotAppLogo,
 } from "./assets";
 
+const appUsageGuides = [
+  {
+    title: "今日の運勢",
+    steps: [
+      "ホーム画面からカードを選択します。",
+      "結果画面でAIによる解釈を生成できます。",
+    ],
+    note: "固定テンプレートの表示ではなく、その時の内容に応じて解釈を生成します。",
+  },
+  {
+    title: "AI解釈生成",
+    steps: [
+      "スプレッドを選択します（ワンオラクル／ツーカードなど）。",
+      "質問内容を入力してカードを引きます。",
+      "結果画面でAI解釈を生成します。",
+      "各カードのキーワードや基本意味も参照できます。",
+    ],
+    note: "AI解釈の生成にはオンライン接続が必要です。",
+  },
+  {
+    title: "オリジナルスプレッド",
+    steps: [
+      "スプレッドタブまたはマイページから「オリジナルスプレッド」を選択します。",
+      "新規作成でカード枚数を設定します。",
+      "カードを自由に配置し、スプレッドを保存できます。",
+      "保存したスプレッドでリーディングを行い、解釈内容を入力・保存できます。",
+    ],
+  },
+  {
+    title: "ログイン",
+    steps: ["LINEアカウントで自動的にログインされます。"],
+  },
+] as const;
+
 const App: FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const lineUrl = import.meta.env.VITE_LINE_URL?.trim();
@@ -32,6 +66,7 @@ const App: FC = () => {
 
             <nav className="hidden md:flex space-x-6">
               <a href="#about" className="text-gray-600 hover:text-brand-lavender-dark transition-colors font-medium text-sm">サービス紹介</a>
+              <a href="#guide" className="text-gray-600 hover:text-brand-lavender-dark transition-colors font-medium text-sm">使い方ガイド</a>
               <a href="#tarot" className="text-gray-600 hover:text-brand-lavender-dark transition-colors font-medium text-sm">タロットリーディングとは</a>
               <a href="#cards" className="text-gray-600 hover:text-brand-lavender-dark transition-colors font-medium text-sm">カードの意味</a>
               <a href="#faq" className="text-gray-600 hover:text-brand-lavender-dark transition-colors font-medium text-sm">よくある質問</a>
@@ -69,6 +104,7 @@ const App: FC = () => {
         {mobileMenuOpen && (
           <div className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-1">
             <a onClick={() => setMobileMenuOpen(false)} href="#about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-lavender-dark hover:bg-gray-50">サービス紹介</a>
+            <a onClick={() => setMobileMenuOpen(false)} href="#guide" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-lavender-dark hover:bg-gray-50">使い方ガイド</a>
             <a onClick={() => setMobileMenuOpen(false)} href="#tarot" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-lavender-dark hover:bg-gray-50">タロットとは</a>
             <a onClick={() => setMobileMenuOpen(false)} href="#cards" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-lavender-dark hover:bg-gray-50">カードの意味</a>
             <a onClick={() => setMobileMenuOpen(false)} href="#safety" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-lavender-dark hover:bg-gray-50">安心・プライバシー</a>
@@ -312,6 +348,59 @@ const App: FC = () => {
                 </svg>
                 LINEでにゃんこタロットを開く
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 機能別ガイド */}
+        <section id="guide" className="py-24 bg-brand-cream/40 border-y border-gray-100">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-sm font-bold text-brand-lavender-dark tracking-widest uppercase mb-3">Guide</h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">アプリの詳しい使い方</h3>
+              <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                まずはかんたんな流れを確認し、必要に応じて各機能の使い方を詳しくご覧ください。
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-brand-lavender/20 p-6 md:p-7 mb-8">
+              <p className="text-sm md:text-base text-brand-navy font-medium leading-relaxed">
+                本アプリはエンターテインメントおよび自己探求を目的としたツールです。
+              </p>
+            </div>
+
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100 mb-8">
+              <h4 className="text-2xl font-bold text-brand-navy mb-4">アプリ概要</h4>
+              <div className="space-y-3 text-gray-600 leading-relaxed">
+                <p>本アプリは、AIを活用したタロットリーディング支援ツールです。</p>
+                <p>オリジナルスプレッドの作成や、自由なカード配置機能を備えています。</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {appUsageGuides.map((guide) => (
+                <div
+                  key={guide.title}
+                  className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+                >
+                  <h4 className="text-xl font-bold text-brand-navy mb-5">{guide.title}</h4>
+                  <ol className="space-y-4">
+                    {guide.steps.map((step, idx) => (
+                      <li key={step} className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-lavender/25 text-brand-lavender-dark text-sm font-bold flex items-center justify-center">
+                          {idx + 1}
+                        </span>
+                        <span className="text-gray-600 leading-relaxed pt-0.5">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  {guide.note ? (
+                    <p className="mt-5 text-sm text-brand-navy bg-brand-cream/70 rounded-2xl px-4 py-3 border border-brand-lavender/20 leading-relaxed">
+                      ※ {guide.note}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
             </div>
           </div>
         </section>
