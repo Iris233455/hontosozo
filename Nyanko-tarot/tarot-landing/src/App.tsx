@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ContactForm } from "./ContactForm";
 import {
   featureIcons,
-  getRiderWaiteCardImage,
+  getCatCardImage,
   getScreenshot,
   tarotAppLogo,
 } from "./assets";
@@ -293,9 +293,9 @@ const App: FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
               {[
-                { name: "愚者 (The Fool)", keywords: ["新しい始まり", "自由な発想", "可能性への一歩"], image: getRiderWaiteCardImage("major_00_fool.png") || tarotAppLogo },
-                { name: "魔術師 (The Magician)", keywords: ["意志と行動", "自分の力を使う", "現実化のスタート"], image: getRiderWaiteCardImage("major_01_magician.png") || tarotAppLogo },
-                { name: "女教皇 (The High Priestess)", keywords: ["直感", "静かな理解", "内面の声に耳を傾ける"], image: getRiderWaiteCardImage("major_02_priestess.png") || tarotAppLogo }
+                { name: "愚者 (The Fool)", keywords: ["新しい始まり", "自由な発想", "可能性への一歩"], image: getCatCardImage("major_00_fool.png") || tarotAppLogo },
+                { name: "魔術師 (The Magician)", keywords: ["意志と行動", "自分の力を使う", "現実化のスタート"], image: getCatCardImage("major_01_magician.png") || tarotAppLogo },
+                { name: "女教皇 (The High Priestess)", keywords: ["直感", "静かな理解", "内面の声に耳を傾ける"], image: getCatCardImage("major_02_priestess.png") || tarotAppLogo }
               ].map((card, idx) => (
                 <div key={idx} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm text-center flex flex-col items-center">
                   <div className="w-24 mb-5 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
@@ -328,57 +328,55 @@ const App: FC = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-brand-navy">ご利用ガイド</h3>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100">
-              <p className="text-gray-600 leading-relaxed mb-2">
-                本アプリは、AIを活用したタロットリーディング支援ツールです。オリジナルスプレッドの作成や、自由なカード配置機能を備えています。
-              </p>
-              <p className="text-sm text-gray-500 mb-10">
-                ※ 本アプリはエンターテインメントおよび自己探求を目的としたツールです。
-              </p>
+            <p className="text-gray-600 leading-relaxed text-center mb-1">
+              本アプリは、AIを活用したタロットリーディング支援ツールです。オリジナルスプレッドの作成や、自由なカード配置機能を備えています。
+            </p>
+            <p className="text-sm text-gray-500 text-center mb-14">
+              ※ 本アプリはエンターテインメントおよび自己探求を目的としたツールです。
+            </p>
 
-              {/* かんたん 3 ステップ */}
-              <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">かんたん 3 ステップ</h4>
-              <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch mb-10 relative">
-                <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-px bg-gray-100 -z-10" />
-                {[
-                  { step: "01", title: "LINEからアクセス", desc: "お友達追加後、メニューからアプリを開きます。" },
-                  { step: "02", title: "テーマを入力", desc: "気持ちや悩み、占いたいテーマを入力します。" },
-                  { step: "03", title: "カードを引いて解釈", desc: "カードを引き、AIのやさしい解釈を受け取ります。" },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex-1 text-center">
-                    <div className="w-14 h-14 mx-auto bg-brand-lavender-dark text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md border-4 border-white">
-                      {item.step}
-                    </div>
-                    <h5 className="text-base font-bold mb-1">{item.title}</h5>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+            {/* かんたん 3 ステップ */}
+            <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">かんたん 3 ステップ</h4>
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch mb-14 relative">
+              <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-px bg-gray-200/60 -z-10" />
+              {[
+                { step: "01", title: "LINEからアクセス", desc: "お友達追加後、メニューからアプリを開きます。" },
+                { step: "02", title: "テーマを入力", desc: "気持ちや悩み、占いたいテーマを入力します。" },
+                { step: "03", title: "カードを引いて解釈", desc: "カードを引き、AIのやさしい解釈を受け取ります。" },
+              ].map((item, idx) => (
+                <div key={idx} className="flex-1 text-center">
+                  <div className="w-14 h-14 mx-auto bg-brand-lavender-dark text-white rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-md border-4 border-white">
+                    {item.step}
+                  </div>
+                  <h5 className="text-base font-bold mb-1">{item.title}</h5>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-t border-gray-200/60 pt-10">
+              <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">機能別の使い方</h4>
+
+              <div className="divide-y divide-gray-100">
+                {appUsageGuides.map((guide) => (
+                  <div key={guide.title} className="py-6 first:pt-0 last:pb-0">
+                    <h4 className="text-base font-bold text-brand-navy mb-3 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-lavender-dark flex-shrink-0" />
+                      {guide.title}
+                    </h4>
+                    <ol className="space-y-2 pl-4">
+                      {guide.steps.map((step, idx) => (
+                        <li key={step} className="flex items-start gap-3 text-gray-600 leading-relaxed">
+                          <span className="flex-shrink-0 text-sm font-bold text-brand-lavender-dark tabular-nums mt-px">{idx + 1}.</span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                    {guide.note ? (
+                      <p className="mt-3 pl-4 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
+                    ) : null}
                   </div>
                 ))}
-              </div>
-
-              <div className="border-t border-gray-100 pt-8">
-                <h4 className="text-lg font-bold text-brand-navy mb-6 text-center">機能別の使い方</h4>
-
-                <div className="divide-y divide-gray-100">
-                  {appUsageGuides.map((guide) => (
-                    <div key={guide.title} className="py-6 first:pt-0 last:pb-0">
-                      <h4 className="text-base font-bold text-brand-navy mb-3 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-lavender-dark flex-shrink-0" />
-                        {guide.title}
-                      </h4>
-                      <ol className="space-y-2 pl-4">
-                        {guide.steps.map((step, idx) => (
-                          <li key={step} className="flex items-start gap-3 text-gray-600 leading-relaxed">
-                            <span className="flex-shrink-0 text-sm font-bold text-brand-lavender-dark tabular-nums mt-px">{idx + 1}.</span>
-                            <span>{step}</span>
-                          </li>
-                        ))}
-                      </ol>
-                      {guide.note ? (
-                        <p className="mt-3 pl-4 text-sm text-gray-500 leading-relaxed">※ {guide.note}</p>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 

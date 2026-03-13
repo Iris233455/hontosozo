@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { getRiderWaiteCardImage, tarotAppLogo } from './assets';
+import { getCatCardImage, tarotAppLogo } from './assets';
 
 interface CardData {
     card_id: string;
@@ -64,7 +64,7 @@ const Cards: FC = () => {
                     {cards.map(card => (
                         <div key={card.card_id} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition-shadow">
                             <div className="w-32 md:w-40 mb-6 rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                                <img src={getRiderWaiteCardImage(card.filename) || tarotAppLogo} alt={card.name_jp} className="w-full h-auto object-cover" />
+                                <img src={getCatCardImage(card.filename) || tarotAppLogo} alt={card.name_jp} className="w-full h-auto object-cover" />
                             </div>
                             <h2 className="text-xl font-bold text-center mb-6">{card.name_jp}</h2>
 

@@ -30,6 +30,13 @@ const riderWaiteAssets = toAssetMap(
   }) as Record<string, string>,
 );
 
+const catAssets = toAssetMap(
+  import.meta.glob("../../tarot/cat/*.{png,jpg,jpeg,svg,webp}", {
+    eager: true,
+    import: "default",
+  }) as Record<string, string>,
+);
+
 export const tarotAppLogo =
   logoAssets["tarot_app_logo.png"] ?? "/tarot_app_logo.svg";
 
@@ -45,4 +52,8 @@ export function getScreenshot(name: string) {
 
 export function getRiderWaiteCardImage(name: string) {
   return riderWaiteAssets[name] ?? "";
+}
+
+export function getCatCardImage(name: string) {
+  return catAssets[name] ?? "";
 }
